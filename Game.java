@@ -34,7 +34,11 @@ public class Game
      */
     private void createRooms()
     {
-        Room outside, theater, pub, lab, office, admission, acts, bookstore, library, bateman, studentLife, studentLounge, tutor, planetarium, cafeteria, physicalEducation, pool, fitness, westBuilding, gamingLab, aiClub;
+        Room outside, theater, pub, lab, office, admission, acts, bookstore, library, 
+        bateman, studentLife, studentLounge, tutor, planetarium, cafeteria, 
+        physicalEducation, pool, fitness, westBuilding, gamingLab, aiClub;
+        Items book, paper, jacket, computer, vr, aiProject, coke, 
+        dumbbell, salad, frenchFries, pingPong, chocolate, sportsDrink, telescope;    
       
         // create the rooms
         outside = new Room("outside the main entrance of Raritan Valley Community College");
@@ -119,6 +123,25 @@ public class Game
         aiClub.setExit("east", westBuilding);
         
         currentRoom = outside;  // start game outside
+        
+        
+        // create the items
+        book = new Items("book", "Objects First With Java A Practical Introduction Using Bluej 6Th Edition", 1.85);
+        paper = new Items("paper", "A letter of paper is 8–1/2 x 11 inches in size.", 0.01);
+        jacket = new Items("jacket", "A gray jacket with the RVCC logo is present.", 0.8);
+        computer = new Items("computer", "A computer desktop.", 20.50);
+        vr = new Items("vr", "Virtual Reality Headset - Quest 2 Advanced All-In-One.", 1.83);
+        aiProject = new Items("aiProject", "A folder for the AI Club's AI project.", 0.45);
+        coke = new Items("coke", "A Coke can, Coke is a carbonated soft drink manufactured by the Coca-Cola Company.", 0.5);
+        dumbbell = new Items("dumbbell", "Workout Dumbbell - 2 lbs", 2);
+        salad = new Items("salad", "A bowl of Green Salad", 0.35);
+        frenchFries = new Items("frenchFries", "A French-fried is in a box", 0.25);
+        pingPong = new Items("pingPong", "A Ping Pong ball.", 0.001);
+        chocolate = new Items("chocolate", "Feastables Chocolate Mr Beast Bar.", 0.1);
+        sportsDrink = new Items("sportsDrink", "A Bottle of Gatorade G2 Grape.", 0.35);
+        telescope = new Items("telescope", "Professional Astronomy Refractor Telescope.", 50);
+        
+        
     }
 
     /**
@@ -179,6 +202,10 @@ public class Game
             case LOOK:
                 lookRoom(command);
                 break;
+                
+            case EAT:
+                eat(command);
+                break;
 
             case QUIT:
                 wantToQuit = quit(command);
@@ -230,11 +257,19 @@ public class Game
     }
     
     /**
-     * 
+     * Exercise 8.14
      */
     private void lookRoom(Command command)
     {
         System.out.println(currentRoom.getLongDescription());
+    }
+    
+    /**
+     * Exercise 8.15
+     */
+    private void eat(Command command)
+    {
+        System.out.println("You have eaten now and you are not hungry any more.");
     }
 
     /** 
