@@ -175,6 +175,10 @@ public class Game
             case GO:
                 goRoom(command);
                 break;
+                
+            case LOOK:
+                lookRoom(command);
+                break;
 
             case QUIT:
                 wantToQuit = quit(command);
@@ -223,6 +227,14 @@ public class Game
             currentRoom = nextRoom;
             System.out.println(currentRoom.getLongDescription());
         }
+    }
+    
+    /**
+     * 
+     */
+    private void lookRoom(Command command)
+    {
+        System.out.println(currentRoom.getLongDescription());
     }
 
     /** 
