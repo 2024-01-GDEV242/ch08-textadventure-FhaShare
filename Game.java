@@ -19,6 +19,7 @@ public class Game
 {
     private Parser parser;
     private Room currentRoom;
+    private Room previousRoom;
         
     /**
      * Create the game and initialise its internal map.
@@ -125,6 +126,7 @@ public class Game
         
         currentRoom = outside;  // start game outside
         
+        // Exercise 8.20 - Add items to your game. Items have description and weight.
         // create the items
         book = new Items("book", "an Objects First With Java A Practical Introduction Using Bluej 6Th Edition", 1.85);
         paper = new Items("paper", "a letter of paper is 8–1/2 x 11 inches in size", 0.01);
@@ -141,7 +143,7 @@ public class Game
         sportsDrink = new Items("sportsDrink", "a bottle of Gatorade G2 Grape.", 0.35);
         telescope = new Items("telescope", "a Professional Astronomy Refractor Telescope.", 50);
         
-        // put the items in the rooms
+        // Exercise 8.20 - put the items in the rooms
         library.addItems(book);
         admission.addItems(paper);
         bookstore.addItems(jacket);
@@ -213,10 +215,18 @@ public class Game
             case GO:
                 goRoom(command);
                 break;
+            
+            case BACK:
+                back(command);
+                break;
                 
             case LOOK:
                 lookRoom(command);
                 break;
+                
+            //case PICK:
+                //pick(command);
+                //break;
                 
             case EAT:
                 eat(command);
@@ -264,13 +274,31 @@ public class Game
             System.out.println("There is no door!");
         }
         else {
+           //update the previous room
+            previousRoom = currentRoom;
             currentRoom = nextRoom;
             currentRoom.getLongDescription();
         }
     }
     
     /**
-     * Exercise 8.14- Add the look command to your version of the zuul game.
+     * Exercise 8.23 - implement the back command (back one room) 
+     */
+    private void back(Command command)
+    {
+        if(previousRoom == null) {
+            System.out.println("You are at the start there is no previous room.");
+        } else {
+            // The previous room becomes the current.
+            Room tmp = currentRoom;
+            currentRoom = previousRoom;
+            previousRoom = tmp;
+            currentRoom.getLongDescription();
+        }
+    }
+    
+    /**
+     * Exercise 8.14 - Add the look command to your version of the zuul game.
      */
     private void lookRoom(Command command)
     {
@@ -284,7 +312,7 @@ public class Game
     {
         System.out.println("You have eaten now and you are not hungry any more.");
     }
-
+    
     /** 
      * "Quit" was entered. Check the rest of the command to see
      * whether we really quit the game.
