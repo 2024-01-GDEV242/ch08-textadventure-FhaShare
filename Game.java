@@ -1,3 +1,4 @@
+import java.util.Stack;
 /**
  *  This class is the main class of the "World of Zuul" application. 
  *  "World of Zuul" is a very simple, text based adventure game.  Users 
@@ -11,8 +12,8 @@
  *  rooms, creates the parser and starts the game.  It also evaluates and
  *  executes the commands that the parser returns.
  * 
- * @author  Michael Kölling and David J. Barnes
- * @version 2016.02.29
+ * @author Fhaungfha Suvannakajorn
+ * @version 2024.03.25
  */
 
 public class Game 
@@ -20,6 +21,7 @@ public class Game
     private Parser parser;
     private Room currentRoom;
     private Room previousRoom;
+    private Stack<Room> roomPath;
         
     /**
      * Create the game and initialise its internal map.
@@ -129,7 +131,7 @@ public class Game
         // Exercise 8.20 - Add items to your game. Items have description and weight.
         // create the items
         book = new Items("book", "an Objects First With Java A Practical Introduction Using Bluej 6Th Edition", 1.85);
-        paper = new Items("paper", "a letter of paper is 8–1/2 x 11 inches in size", 0.01);
+        paper = new Items("paper", "a letter of paper is 8–1/2 x 11 inches in size", 0.002);
         jacket = new Items("jacket", "a gray jacket with the RVCC logo is present", 0.8);
         computer = new Items("computer", "a computer desktop", 20.50);
         vr = new Items("vr", "a Virtual Reality Headset - Quest 2 Advanced All-In-One.", 1.83);
@@ -159,6 +161,10 @@ public class Game
         physicalEducation.addItems(chocolate);
         physicalEducation.addItems(sportsDrink);
         planetarium.addItems(telescope);
+        
+        // Exercise 8.26 - implement the go back many rooms version of the command command (back repeatedly retraces your steps)
+        // initialize the room path stack
+        roomPath = new Stack<>();
     }
 
     /**
@@ -275,6 +281,7 @@ public class Game
         }
         else {
            //update the previous room
+            roomPath.push(currentRoom);
             previousRoom = currentRoom;
             currentRoom = nextRoom;
             currentRoom.getLongDescription();
@@ -290,9 +297,7 @@ public class Game
             System.out.println("You are at the start there is no previous room.");
         } else {
             // The previous room becomes the current.
-            Room tmp = currentRoom;
-            currentRoom = previousRoom;
-            previousRoom = tmp;
+            currentRoom = roomPath.pop();
             currentRoom.getLongDescription();
         }
     }
