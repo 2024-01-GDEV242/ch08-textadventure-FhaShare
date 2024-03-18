@@ -1,6 +1,7 @@
 import java.util.Set;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.ArrayList;
 
 /**
  * Class Room - a room in an adventure game.
@@ -12,14 +13,15 @@ import java.util.Iterator;
  * connected to other rooms via exits.  For each existing exit, the room 
  * stores a reference to the neighboring room.
  * 
- * @author  Michael Kölling and David J. Barnes
- * @version 2016.02.29
+ * @author  Fhaungfha Suvannakajorn
+ * @version 2024.03.25
  */
 
 public class Room 
 {
     private String description;
     private HashMap<String, Room> exits;        // stores exits of this room.
+    private ArrayList<Items> item;
 
     /**
      * Create a room described "description". Initially, it has
@@ -31,6 +33,7 @@ public class Room
     {
         this.description = description;
         exits = new HashMap<>();
+        item = new ArrayList<>();
     }
 
     /**
@@ -54,13 +57,23 @@ public class Room
 
     /**
      * Return a description of the room in the form:
-     *     You are in the kitchen.
-     *     Exits: north west
+     * You are in the kitchen.
+     * Exits: north west
      * @return A long description of this room
      */
-    public String getLongDescription()
+    public void getLongDescription()
     {
-        return "You are " + description + ".\n" + getExitString();
+        if (item.size() < 1)
+        {
+            System.out.println("You are " + description + ".\n" + getExitString());
+        } else {
+           System.out.println("You are " + description); 
+           for(Items items : item) 
+           {
+               System.out.println(items.getItemInfo());
+           }
+           System.out.println(getExitString());
+        }
     }
 
     /**
@@ -87,6 +100,16 @@ public class Room
     public Room getExit(String direction) 
     {
         return exits.get(direction);
+    }
+    
+    /**
+     * Exercis 8.22 - extension to items - make it so rooms can hold multiple items
+     * Add a new item to the room.
+     * @param items
+     */
+    public void addItems(Items newItem) 
+    {
+        item.add(newItem);
     }
 }
 

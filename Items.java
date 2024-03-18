@@ -1,4 +1,3 @@
-
 /**
  * Write a description of class Items here.
  *
@@ -20,5 +19,10 @@ public class Items
        this.name = name;
        this.description = description;
        this.weight = weight;
+    }
+    
+    public String getItemInfo() 
+    {
+        return "There is a " + name + ", " + description + "looking to weight about " + weight + " lbs.";
     }
 }
