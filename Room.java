@@ -21,7 +21,7 @@ public class Room
 {
     private String description;
     private HashMap<String, Room> exits;        // stores exits of this room.
-    private ArrayList<Items> item;
+    private ArrayList<Items> itemList;
 
     /**
      * Create a room described "description". Initially, it has
@@ -33,7 +33,7 @@ public class Room
     {
         this.description = description;
         exits = new HashMap<>();
-        item = new ArrayList<>();
+        itemList = new ArrayList<>();
     }
 
     /**
@@ -63,12 +63,12 @@ public class Room
      */
     public void getLongDescription()
     {
-        if (item.size() < 1)
+        if (itemList.size() < 1)
         {
             System.out.println("You are " + description + ".\n" + getExitString());
         } else {
-           System.out.println("You are " + description); 
-           for(Items items : item) 
+            System.out.println("You are " + description); 
+           for(Items items : itemList) 
            {
                System.out.println(items.getItemInfo());
            }
@@ -109,7 +109,57 @@ public class Room
      */
     public void addItems(Items newItem) 
     {
-        item.add(newItem);
+        itemList.add(newItem);
+    }
+    
+    public boolean weightCheck(String itemName)
+    {
+        boolean found = false;
+        
+        for (int index = 0; index < itemList.size(); index++){
+            if (itemList.get(index).getWeight() < 10){
+                found = true;
+            }
+        }
+        
+        return found;
+    }
+    
+    /**
+     * 
+     */
+    public void removeItems(String itemName) 
+    {
+        int itemNumber = 0;
+        
+        for (int index = 0; index < itemList.size(); index++) 
+        {
+            if (itemList.get(index).getName() == itemName)
+            {
+                index = itemNumber;
+            }
+        }
+        
+        itemList.remove(itemNumber);
+        
+        System.out.println("You took " + itemName + " and put it into your backpack.");
+        
+    }
+    
+    /**
+     * 
+     */
+    public boolean hasItems(String item)
+    {
+        boolean found = false;
+        
+        for (int index = 0; index < itemList.size(); index++){
+            if (itemList.get(index).getName().equals(item)){
+                found = true;
+            }
+        }
+        
+        return found;
     }
 }
 

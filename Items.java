@@ -23,6 +23,19 @@ public class Items
     
     public String getItemInfo() 
     {
-        return "There is a " + name + ", " + description + "looking to weight about " + weight + " lbs.";
+        return "There is a " + name + ", " + description + " ,weighing approximately " + weight + " lbs.";
+    }
+    
+    /**
+     * Constructor for objects of class Items
+     */
+    public String getName()
+    {
+        return name;
+    }
+    
+    public double getWeight()
+    {
+        return weight;
     }
 }

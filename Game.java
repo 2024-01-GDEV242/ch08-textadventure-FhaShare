@@ -1,4 +1,5 @@
 import java.util.Stack;
+import java.util.Scanner;
 /**
  *  This class is the main class of the "World of Zuul" application. 
  *  "World of Zuul" is a very simple, text based adventure game.  Users 
@@ -22,6 +23,7 @@ public class Game
     private Room currentRoom;
     private Room previousRoom;
     private Stack<Room> roomPath;
+    private Player player;
         
     /**
      * Create the game and initialise its internal map.
@@ -30,6 +32,7 @@ public class Game
     {
         createRooms();
         parser = new Parser();
+        player = new Player();
     }
 
     /**
@@ -134,16 +137,16 @@ public class Game
         paper = new Items("paper", "a letter of paper is 8–1/2 x 11 inches in size", 0.002);
         jacket = new Items("jacket", "a gray jacket with the RVCC logo is present", 0.8);
         computer = new Items("computer", "a computer desktop", 20.50);
-        vr = new Items("vr", "a Virtual Reality Headset - Quest 2 Advanced All-In-One.", 1.83);
+        vr = new Items("vr", "a Virtual Reality Headset - Quest 2 Advanced All-In-One", 1.83);
         aiProject = new Items("aiProject", "a folder for the AI Club's AI project", 0.45);
         coke = new Items("coke", "a can of coke", 0.5);
         dumbbell = new Items("dumbbell", "a workout dumbbell - 2 lbs", 2);
         salad = new Items("salad", "a bowl of Green Salad", 0.35);
         frenchFries = new Items("frenchFries", "a box of french-fried", 0.25);
         pingPong = new Items("pingPong", "a Ping Pong ball", 0.001);
-        chocolate = new Items("chocolate", " a Feastables Chocolate Mr Beast Bar.", 0.1);
-        sportsDrink = new Items("sportsDrink", "a bottle of Gatorade G2 Grape.", 0.35);
-        telescope = new Items("telescope", "a Professional Astronomy Refractor Telescope.", 50);
+        chocolate = new Items("chocolate", " a Feastables Chocolate Mr Beast Bar", 0.1);
+        sportsDrink = new Items("sportsDrink", "a bottle of Gatorade G2 Grape", 0.35);
+        telescope = new Items("telescope", "a Professional Astronomy Refractor Telescope", 50);
         
         // Exercise 8.20 - put the items in the rooms
         library.addItems(book);
@@ -230,9 +233,13 @@ public class Game
                 lookRoom(command);
                 break;
                 
-            //case PICK:
-                //pick(command);
-                //break;
+            case PICKUP:
+                pickUp(command);
+                break;
+                
+            case DROP:
+                drop(command);
+                break;
                 
             case EAT:
                 eat(command);
@@ -285,6 +292,7 @@ public class Game
             previousRoom = currentRoom;
             currentRoom = nextRoom;
             currentRoom.getLongDescription();
+            player.lowerHuger(5);
         }
     }
     
@@ -314,6 +322,42 @@ public class Game
      * Exercise 8.15 - Add another command, ie. eat with a simple text response (it does not need to interact with other systems)
      */
     private void eat(Command command)
+    {
+        System.out.println("You have eaten now and you are not hungry any more.");
+    }
+    
+    /**
+     * 
+     */
+    private void pickUp(Command command)
+    {
+        if (!command.hasSecondWord()) {
+            System.out.println("You have eaten now and you are not hungry any more.");
+            return;
+        }
+        
+        String item = command.getSecondWord();
+        
+        if (!currentRoom.hasItems(item)){
+            System.out.println("There is no item.");
+            return;
+        }
+        
+        if (!currentRoom.weightCheck(item)) {
+           System.out.println("Thia item is too heavy too pickup!");
+            return; 
+        } else {
+            currentRoom.removeItems(item);
+        
+            player.addItems(item);
+        }
+        
+    }
+    
+    /**
+     * 
+     */
+    private void drop(Command command)
     {
         System.out.println("You have eaten now and you are not hungry any more.");
     }
