@@ -10,15 +10,17 @@ public class Items
     private String name;
     private String description;
     private double weight;
+    private boolean eatable;
 
     /**
      * Constructor for objects of class Items
      */
-    public Items(String name, String description, double weight)
+    public Items(String name, String description, double weight, boolean eatable)
     {
        this.name = name;
        this.description = description;
        this.weight = weight;
+       this.eatable = eatable;
     }
     
     public String getItemInfo() 
@@ -37,5 +39,10 @@ public class Items
     public double getWeight()
     {
         return weight;
+    }
+    
+    public boolean getEatable()
+    {
+        return eatable;
     }
 }

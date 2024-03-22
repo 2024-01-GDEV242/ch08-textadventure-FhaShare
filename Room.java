@@ -20,6 +20,7 @@ import java.util.ArrayList;
 public class Room 
 {
     private String description;
+    private String name;
     private HashMap<String, Room> exits;        // stores exits of this room.
     private ArrayList<Items> itemList;
 
@@ -29,9 +30,10 @@ public class Room
      * "an open court yard".
      * @param description The room's description.
      */
-    public Room(String description) 
+    public Room(String name, String description) 
     {
         this.description = description;
+        this.name = name;
         exits = new HashMap<>();
         itemList = new ArrayList<>();
     }
@@ -128,22 +130,25 @@ public class Room
     /**
      * 
      */
-    public void removeItems(String itemName) 
+    public Items removeItems(String itemName) 
     {
         int itemNumber = 0;
         
         for (int index = 0; index < itemList.size(); index++) 
         {
-            if (itemList.get(index).getName() == itemName)
+            if (itemList.get(index).getName().equals(itemName))
             {
-                index = itemNumber;
+                itemNumber = index;
             }
         }
+        
+        Items newItem = itemList.get(itemNumber);
         
         itemList.remove(itemNumber);
         
         System.out.println("You took " + itemName + " and put it into your backpack.");
         
+        return newItem;
     }
     
     /**
@@ -160,6 +165,14 @@ public class Room
         }
         
         return found;
+    }
+    
+    /**
+     * Constructor for objects of class Items
+     */
+    public String getName()
+    {
+        return name;
     }
 }
 

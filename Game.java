@@ -24,7 +24,15 @@ public class Game
     private Room previousRoom;
     private Stack<Room> roomPath;
     private Player player;
-        
+    
+    /**
+     * 
+     */
+    public static void main(String[] args){
+        Game start = new Game();
+        start.play();
+    }
+    
     /**
      * Create the game and initialise its internal map.
      */
@@ -45,30 +53,30 @@ public class Game
         physicalEducation, pool, fitness, westBuilding, gamingLab, aiClub;
         
         Items book, paper, jacket, computer, vr, aiProject, coke, 
-        dumbbell, salad, frenchFries, pingPong, chocolate, sportsDrink, telescope;    
+        dumbbell, salad, frenchFries, pingPong, chocolate, sportsDrink, telescope, key;    
       
         // create the rooms
-        outside = new Room("outside the main entrance of Raritan Valley Community College");
-        theater = new Room("in a theater");
-        pub = new Room("in the campus pub");
-        lab = new Room("in a computing lab");
-        office = new Room("in the admin office");
-        admission = new Room("in the admission office");
-        acts = new Room("in the Advising, Counseling and Transfer Services");
-        bookstore = new Room("in the RVCC bookstore");
-        library = new Room("in the Library");
-        bateman = new Room("in the Bateman Student Center");
-        studentLife = new Room("in the RVCC Student Life office");
-        studentLounge = new Room("in the Student Lounge");
-        tutor = new Room("in the Tutoring Center");
-        planetarium = new Room("in the Planetarium");
-        cafeteria = new Room("in the Cafeteria");
-        physicalEducation = new Room("in the Physical Education");
-        pool = new Room("in the pool");
-        fitness = new Room("in the Fitness Center");
-        westBuilding = new Room("in the West Building");
-        gamingLab = new Room("in the Gaming Lab");
-        aiClub = new Room("in the AI club");
+        outside = new Room("outside", "outside the main entrance of Raritan Valley Community College");
+        theater = new Room("theater", "in a theater");
+        pub = new Room("pub", "in the campus pub");
+        lab = new Room("lab", "in a computing lab");
+        office = new Room("office", "in the admin office");
+        admission = new Room("admission", "in the admission office");
+        acts = new Room("acts", "in the Advising, Counseling and Transfer Services");
+        bookstore = new Room("bookstore", "in the RVCC bookstore");
+        library = new Room("library", "in the Library");
+        bateman = new Room("bateman", "in the Bateman Student Center");
+        studentLife = new Room("studentLife", "in the RVCC Student Life office");
+        studentLounge = new Room("studentLounge", "in the Student Lounge");
+        tutor = new Room("tutor", "in the Tutoring Center");
+        planetarium = new Room("planetarium", "in the Planetarium");
+        cafeteria = new Room("cafeteria", "in the Cafeteria");
+        physicalEducation = new Room("physicalEducation", "in the Physical Education");
+        pool = new Room("pool", "in the pool");
+        fitness = new Room("fitness", "in the Fitness Center");
+        westBuilding = new Room("westBuilding", "in the West Building");
+        gamingLab = new Room("gamingLab", "in the Gaming Lab");
+        aiClub = new Room("aiClub", "in the AI club");
         
         // initialise room exits
         outside.setExit("east", theater);
@@ -133,20 +141,21 @@ public class Game
         
         // Exercise 8.20 - Add items to your game. Items have description and weight.
         // create the items
-        book = new Items("book", "an Objects First With Java A Practical Introduction Using Bluej 6Th Edition", 1.85);
-        paper = new Items("paper", "a letter of paper is 8–1/2 x 11 inches in size", 0.002);
-        jacket = new Items("jacket", "a gray jacket with the RVCC logo is present", 0.8);
-        computer = new Items("computer", "a computer desktop", 20.50);
-        vr = new Items("vr", "a Virtual Reality Headset - Quest 2 Advanced All-In-One", 1.83);
-        aiProject = new Items("aiProject", "a folder for the AI Club's AI project", 0.45);
-        coke = new Items("coke", "a can of coke", 0.5);
-        dumbbell = new Items("dumbbell", "a workout dumbbell - 2 lbs", 2);
-        salad = new Items("salad", "a bowl of Green Salad", 0.35);
-        frenchFries = new Items("frenchFries", "a box of french-fried", 0.25);
-        pingPong = new Items("pingPong", "a Ping Pong ball", 0.001);
-        chocolate = new Items("chocolate", " a Feastables Chocolate Mr Beast Bar", 0.1);
-        sportsDrink = new Items("sportsDrink", "a bottle of Gatorade G2 Grape", 0.35);
-        telescope = new Items("telescope", "a Professional Astronomy Refractor Telescope", 50);
+        book = new Items("book", "an Objects First With Java A Practical Introduction Using Bluej 6Th Edition", 1.85, false);
+        paper = new Items("paper", "a letter of paper is 8–1/2 x 11 inches in size", 0.002, false);
+        jacket = new Items("jacket", "a gray jacket with the RVCC logo is present", 0.8, false);
+        computer = new Items("computer", "a computer desktop", 20.50, false);
+        vr = new Items("vr", "a Virtual Reality Headset - Quest 2 Advanced All-In-One", 1.83, false);
+        aiProject = new Items("aiProject", "a folder for the AI Club's AI project", 0.45, false);
+        coke = new Items("coke", "a can of coke", 0.5, true);
+        dumbbell = new Items("dumbbell", "a workout dumbbell - 2 lbs", 2, false);
+        salad = new Items("salad", "a bowl of Green Salad", 0.35, true);
+        frenchFries = new Items("frenchFries", "a box of french-fried", 0.25, true);
+        pingPong = new Items("pingPong", "a Ping Pong ball", 0.001, false);
+        chocolate = new Items("chocolate", " a Feastables Chocolate Mr Beast Bar", 0.1, true);
+        sportsDrink = new Items("sportsDrink", "a bottle of Gatorade G2 Grape", 0.35, true);
+        telescope = new Items("telescope", "a Professional Astronomy Refractor Telescope", 50, false);
+        key = new Items("key", "a Game Lab key", 0.25, false);
         
         // Exercise 8.20 - put the items in the rooms
         library.addItems(book);
@@ -155,6 +164,7 @@ public class Game
         lab.addItems(computer);
         gamingLab.addItems(vr);
         aiClub.addItems(aiProject);
+        aiClub.addItems(key);
         cafeteria.addItems(coke);
         physicalEducation.addItems(coke);
         fitness.addItems(dumbbell);
@@ -240,9 +250,17 @@ public class Game
             case DROP:
                 drop(command);
                 break;
+            
+            case BACKPACK:
+                backpack(command);
+                break;
                 
             case EAT:
                 eat(command);
+                break;
+            
+            case STATUS:
+                status(command);
                 break;
 
             case QUIT:
@@ -286,13 +304,25 @@ public class Game
         if (nextRoom == null) {
             System.out.println("There is no door!");
         }
+        else if (nextRoom.getName().equals("gamingLab")){
+           if (!player.hasItems("key")){
+            System.out.println("The door is locked, you have to find the key.");
+            } else {
+                System.out.println("You used the key.");
+                roomPath.push(currentRoom);
+                previousRoom = currentRoom;
+                currentRoom = nextRoom;
+                currentRoom.getLongDescription();
+                player.lowerHuger(5);
+            }
+        }
         else {
            //update the previous room
             roomPath.push(currentRoom);
             previousRoom = currentRoom;
             currentRoom = nextRoom;
             currentRoom.getLongDescription();
-            player.lowerHuger(5);
+            player.lowerHuger(20);
         }
     }
     
@@ -301,7 +331,7 @@ public class Game
      */
     private void back(Command command)
     {
-        if(previousRoom == null) {
+        if(roomPath.size() == 0) {
             System.out.println("You are at the start there is no previous room.");
         } else {
             // The previous room becomes the current.
@@ -323,7 +353,25 @@ public class Game
      */
     private void eat(Command command)
     {
-        System.out.println("You have eaten now and you are not hungry any more.");
+        String item = command.getSecondWord();
+        
+        if (!player.hasItems(item)){
+            System.out.println("There is no item in this room.");
+            return;
+        }
+        
+        if (!player.eatableCheck(item)) {
+            System.out.println("This item can't be eaten.!");
+            return; 
+        }
+        
+        if (player.getHungerLevel() >= 100){
+            System.out.println("You are too full to eat and you are not hungry right now.");
+        } else {
+            player.eatItems(item);
+            player.raiseHuger(10);
+            System.out.println("You feel less hungry after eating.");
+        }
     }
     
     /**
@@ -331,15 +379,10 @@ public class Game
      */
     private void pickUp(Command command)
     {
-        if (!command.hasSecondWord()) {
-            System.out.println("You have eaten now and you are not hungry any more.");
-            return;
-        }
-        
         String item = command.getSecondWord();
         
         if (!currentRoom.hasItems(item)){
-            System.out.println("There is no item.");
+            System.out.println("There is no item in this room.");
             return;
         }
         
@@ -347,11 +390,10 @@ public class Game
            System.out.println("Thia item is too heavy too pickup!");
             return; 
         } else {
-            currentRoom.removeItems(item);
+            Items newItem = currentRoom.removeItems(item);
         
-            player.addItems(item);
+            player.addItems(newItem);
         }
-        
     }
     
     /**
@@ -359,7 +401,32 @@ public class Game
      */
     private void drop(Command command)
     {
-        System.out.println("You have eaten now and you are not hungry any more.");
+        String item = command.getSecondWord();
+        
+        if (!player.hasItems(item)){
+            System.out.println("There is no item in the backpack.");
+            return;
+        }
+        
+        Items newItem = player.removeItems(item);
+            
+        currentRoom.addItems(newItem);
+    }
+    
+    /**
+     * 
+     */
+    private void status(Command command)
+    {
+        player.getStatus();
+    }
+    
+    /**
+     * 
+     */
+    private void backpack(Command command)
+    {
+        player.getInventory();
     }
     
     /** 
