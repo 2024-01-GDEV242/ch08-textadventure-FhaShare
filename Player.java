@@ -1,7 +1,15 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 /**
- * Write a description of class Player here.
+ * Class Player - the player in the "World of Zuul" adventure game.
+ * 
+ * This class is part of the "World of Zuul" application.
+ * "World of Zuul" is a very simple, text-based adventure game.
+ * 
+ * The "Player" represents the game's protagonist and is the main interface for interacting with the game world. 
+ * The player character can navigate rooms, carry items in a backpack, 
+ * and manage health and hunger levels to survive. The class allows manipulation of these attributes, 
+ * offering methods to move between rooms, handle items, and monitor the player's state. 
  *
  * @author Fhaungfha Suvannakajorn
  * @version 2024.03.25
@@ -106,7 +114,7 @@ public class Player
     }
     
     /**
-     *
+     * Exercise 8.28-8.33 - Add a Player that can carry one or more objects according to the options presented
      */
     public void addItems(Items newItem) 
     {

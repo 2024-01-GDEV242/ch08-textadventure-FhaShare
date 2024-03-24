@@ -26,7 +26,9 @@ public class Game
     private Player player;
     
     /**
-     * 
+     * The main method for the Game class is the entry point for the "World of Zuul" game application 
+     * outside of BlueJ. It allows the game to be launched standalone or within BlueJ, 
+     * providing flexibility in execution and testing.
      */
     public static void main(String[] args){
         Game start = new Game();
@@ -375,7 +377,12 @@ public class Game
     }
     
     /**
+     * This method allows the player to pick up an item from the current room if it's present and not too heavy. 
+     * If the conditions are met, the item is added to the player's backpack; 
+     * otherwise, appropriate feedback is given.
      * 
+     * Exercise 8.28-8.33 - add a Player that can carry one or more objects according to the options presented
+     * Extra Credit
      */
     private void pickUp(Command command)
     {
@@ -397,7 +404,11 @@ public class Game
     }
     
     /**
+     * The method allows the player to remove an item from their inventory and place it in the current room. 
+     * If the item exists in the player's backpack, it is moved to the current room. 
+     * If the player does not have the item, a message indicates that the item is not in the backpack.
      * 
+     * Extra Credit
      */
     private void drop(Command command)
     {
@@ -414,7 +425,8 @@ public class Game
     }
     
     /**
-     * 
+     * The method allows players to check their current health and hunger levels 
+     * at any point in the game to make informed decisions.
      */
     private void status(Command command)
     {
@@ -422,7 +434,8 @@ public class Game
     }
     
     /**
-     * 
+     * The method allows players to view a list of items in their backpacks, 
+     * providing details about their collected items.
      */
     private void backpack(Command command)
     {

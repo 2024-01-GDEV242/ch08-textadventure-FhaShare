@@ -1,5 +1,12 @@
 /**
- * Write a description of class Items here.
+ * Class Items - items in the "World of Zuul" adventure game.
+ *
+ * This class is part of the "World of Zuul" application. 
+ * "World of Zuul" is a very simple, text-based adventure game.
+ *
+ * An "Item" represents an object within the game that players can interact with. 
+ * Items are not inherently connected to rooms but can be found within them. 
+ * They have attributes such as name, description, weight, and whether they can be eaten, which affects gameplay.
  *
  * @author Fhaungfha Suvannakajorn
  * @version 2024.03.25
