@@ -107,13 +107,19 @@ public class Room
     /**
      * Exercis 8.22 - extension to items - make it so rooms can hold multiple items
      * Add a new item to the room.
-     * @param items
+     * @param newItem The item to be added to the room.
      */
     public void addItems(Items newItem) 
     {
         itemList.add(newItem);
     }
     
+    /**
+     * This method checks if an item in the room's inventory weighs less than 10 units and returns true 
+     * if it finds at least one matching item; otherwise, it returns false.
+     * @param itemName The name of the item to check for weight.
+     * @return true if an item weighing less than 10 units is found; otherwise, false.
+     */
     public boolean weightCheck(String itemName)
     {
         boolean found = false;
@@ -128,7 +134,10 @@ public class Room
     }
     
     /**
-     * 
+     * This method removes an item by name from the itemList and returns it. 
+     * If multiple items have the same name, it removes the one with the same name from the list.
+     * @param itemName The name of the item to be removed.
+     * @return The removed item.
      */
     public Items removeItems(String itemName) 
     {
@@ -152,7 +161,10 @@ public class Room
     }
     
     /**
-     * 
+     * This method Checks if the itemList contains an item with the specified name. 
+     * It then iterates through the itemList, comparing each item's name with the given name. 
+     * @param item The name of the item to search for in the itemList.
+     * @return true if the item is found, false otherwise.
      */
     public boolean hasItems(String item)
     {
@@ -168,7 +180,8 @@ public class Room
     }
     
     /**
-     * Constructor for objects of class Items
+     * This method retrieves the name of the item, allowing for identification or display purposes within the game.
+     * @return The name of the item as a String.
      */
     public String getName()
     {
