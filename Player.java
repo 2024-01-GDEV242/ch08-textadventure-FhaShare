@@ -17,14 +17,13 @@ import java.util.Scanner;
 public class Player
 {
     private Room currentRoom;
-    private String name;
     private ArrayList<Items> backpack;
-    //private ArrayList<Room> visitRooms;
     private int hp;
     private int hungerLevel;
     
     /**
-     * 
+     * The constructor creates a new Player object with default health and hunger levels, 
+     * and initializes the player's backpack as an empty ArrayList for item storage during the game.
      */
     public Player()
     {
@@ -32,12 +31,14 @@ public class Player
         hp = 100;
         hungerLevel = 100;
         
-        //
+        // The player's backpack is initialized as an empty ArrayList to store acquired Item objects.
         backpack = new ArrayList();
     }
 
     /**
-     *
+     * This method updates the player's location to a new room, facilitating navigation and interaction within 
+     * the game environment.
+     * @param currentRoom The new room to set as the player's current location.
      */
     public void setCurrentRoom(Room currentRoom) 
     {
@@ -45,23 +46,18 @@ public class Player
     }
 
     /**
-     *
+     * This method retrieves the player's current room. It returns the room where the player is currently located, 
+     * allowing access to room-specific information or actions within the game. 
+     * @return currentRoom The player's current room.
      */
     public Room getCurrentRoom() 
     {
         return currentRoom;
     }
-
-    /**
-     *
-     */
-    public String getName() 
-    {
-        return name;
-    }
     
     /**
-     *
+     * This method manages the player's hunger level and simulates the effects of starvation on health.
+     * @param level The amount by which to decrease the hunger level.
      */
     public void lowerHuger(int level)
     {
@@ -80,7 +76,9 @@ public class Player
     } 
     
     /**
-     * 
+     * This method retrieves the player's current hunger level, which is crucial for survival decisions 
+     * and actions, such as eating to restore it.
+     * @return hungerLevel The current hunger level of the player.
      */
     public int getHungerLevel()
     {
@@ -88,7 +86,9 @@ public class Player
     }
     
     /**
-     * 
+     * This method retrieves the player's current health points (HP) to check their status and determine 
+     * if healing is needed.
+     * @return hp The current HP level of the player.
      */
     public int getHpLevel()
     {
@@ -96,7 +96,8 @@ public class Player
     }
     
     /**
-     * 
+     * This method displays the player's current health points (HP) and hunger level, 
+     * providing essential feedback for informed decision-making in the game.
      */
     public void getStatus()
     {
@@ -105,7 +106,9 @@ public class Player
     }
     
     /**
-     * 
+     * This method increases the player's hunger level and health points by specified amounts to simulate 
+     * the effects of eating and improve the player's survival stats.
+     * @param level The amount by which to increase the hunger level.
      */
     public void raiseHuger(int level)
     {
@@ -138,7 +141,10 @@ public class Player
     }
     
     /**
-     * 
+     * The method adds new items to the player's backpack, allowing them to carry objects encountered in the game. 
+     * It extends its functionality to include inventory management.
+     * @param itemName The item to be added to the player's backpack.
+     * @return newItem The item that was removed, allowing further action to be taken with it.
      */
     public Items removeItems(String itemName) 
     {
@@ -162,7 +168,10 @@ public class Player
     }
     
     /**
-     * 
+     * The method checks if the player's backpack contains an item with the specified name. 
+     * If a matching item is found, it returns true; otherwise, it returns false.
+     * @param item The name of the item to check for in the backpack.
+     * @return true if the item is found in the backpack, false otherwise.
      */
     public boolean hasItems(String item)
     {
@@ -177,6 +186,9 @@ public class Player
         return found;
     }
     
+    /**
+     * The method presents the player's backpack inventory.
+     */
     public void getInventory()
     {
         if (backpack.size() < 1)
@@ -191,6 +203,12 @@ public class Player
         }
     }
     
+    /**
+     * The method checks for edible items in the player's backpack, 
+     * but it does not currently use the itemName parameter, indicating a possible oversight.
+     * @param itemName The name of the item to check for edibility. 
+     * @return true if there is at least one edible item in the backpack, false otherwise.
+     */
     public boolean eatableCheck(String itemName)
     {
         boolean found = false;
