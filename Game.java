@@ -100,14 +100,12 @@ public class Game
         office.setExit("east", admission);
         office.setExit("south", bateman);
         
-        admission.setExit("north", library);
         admission.setExit("east", acts);
         
         acts.setExit("north", bookstore);
         
         bookstore.setExit("west", library);
         
-        library.setExit("south", admission);
         library.setExit("west", theater);
         
         bateman.setExit("north", office);

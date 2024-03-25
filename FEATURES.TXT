@@ -1,1 +1,47 @@
+The World of Zuul application by author Fhaungfha Suvannakajorn 
 
+A-Level Requirements Implemented in this version
+1. One way trap door: The room setup for "World of Zuul" features a sequence that goes from "admission" to "acts," 
+then to "bookstore," and finally to "library." This creates a one-way path, preventing players from returning through 
+the same route. As a result, players cannot go back to the "admission" room and must progress linearly through 
+these areas without the option to backtrack. This design choice emphasizes a linear narrative progression 
+and requires strategic decision-making within the game's structure.
+
+2. Eat actually changes game state: The "eat" command allows the player to consume edible items, 
+impacting their hunger level and, indirectly, their health. The game verifies items in the player's inventory, 
+checks their edibility, manages the player's hunger level, and provides immediate feedback on consumption. 
+
+3. Rudimentary Health System: The game's strategy involves Health Points (HP) and Hunger Levels, 
+which impact survival. Players start with 100 HP, representing vitality. Hunger Levels start at 100 
+and decrease over time, simulating the need for food. If the Hunger Level drops below 50, players receive warnings. 
+If it reaches 0, HP is deducted by 5 points. The game world contains edible items to replenish Hunger levels 
+and maintain or improve health. 
+
+4. Locked Doors and Keys: Players navigate through locked doors using keys, adding challenge and strategy to the game. 
+The command enables directional movement, checks for accessible exits, and simulates locked door scenarios 
+for specific rooms. Players need keys to unlock doors. Upon successful room transition, the game updates 
+the player's location and environment. The "gamingLab" room has a Locked Room Condition. 
+Without the key, an informative message indicates the door is locked. With the key, the player can enter the room.
+
+Extra Credit
+1. Allow player to take item: The pick-up method allows players to collect items in rooms to progress in the game. 
+It works by identifying the item, checking its presence in the room, verifying its weight, and adding it 
+to the player's backpack if manageable. 
+
+2. Allow player to drop item: The drop method allows the player to remove an item from their inventory 
+and place it in the current room they are in. If the specified item is in the player's backpack, 
+it is removed and added to the room. If the item is not found, the game provides feedback. 
+
+3. Implement a collection of items as Inventory so the player may have multiple items: 
+The inventory system allows the player to carry multiple items. The player's backpack is initialized as empty. 
+They can add items, check for specific items, remove or use items, and eat. 
+
+4. Add inventory to room so room can hold multiple items: An inventory system has been added for each room, 
+allowing multiple items to be stored and interacted with. The update includes methods for adding, removing, 
+and checking the presence and weight of items in a room. Players are allowed to find and use various items 
+within the game world.
+
+5. Add weight to items so player can only carry specified weight:  In the game, items have weights that limit 
+the player's carrying capacity. This means that the player can only pick up an item from the current room 
+if it's present and not too heavy. The game checks if an item in the room's inventory weighs less than 10 units, 
+allowing the player to pick it up.

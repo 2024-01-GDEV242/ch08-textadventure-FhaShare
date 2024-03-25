@@ -106,8 +106,7 @@ public class Player
     }
     
     /**
-     * This method increases the player's hunger level and health points by specified amounts to simulate 
-     * the effects of eating and improve the player's survival stats.
+     * This method increases the player's hunger level and health points.
      * @param level The amount by which to increase the hunger level.
      */
     public void raiseHuger(int level)

@@ -67,7 +67,7 @@ public class Items
     
     /**
      * This method checks if the item is edible and returns the value of the 'eatable' attribute. 
-     * It determines which items in the game the player can consume.
+     * It determines which items in the game the player can eat.
      * @return true if the item is edible, false otherwise.
      */
     public boolean getEatable()
